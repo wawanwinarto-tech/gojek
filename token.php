@@ -10,12 +10,12 @@ $headers[] = 'X-AppVersion: 3.33.1';
 $headers[] = "X-Uniqueid: ac94e5d0e7f3f".rand(100,999);
 $headers[] = 'X-Location: -6.9726247,110.4043687';
 
-echo "Nomer HP: ";
+echo "Nomer Handphone: ";
 $number = trim(fgets(STDIN));
 $numbers = $number[0].$number[1];
 $numberx = $number[5];
-if($numbers == "08") { 
-	$number = str_replace("08","628",$number);
+if($numbers == "082") { 
+	$number = str_replace("08","6282",$number);
 }
 $login = curl('https://api.gojekapi.com/v3/customers/login_with_phone', '{"phone":"+' . $number . '"}', $headers);
 $logins = json_decode($login[0]);
@@ -29,10 +29,10 @@ if($logins->success == true) {
 		$token = $verifs->data->access_token;
 		echo "Token: ".$token;
 	} else {
-		die("OTP salah goblok!");
+		die("OTP tidak benar");
 	}
 } else {
-	die("ERROR - Nomer belum kedaftar goblok!");
+	die("ERROR - nomor belum terdaftar!");
 }
 
 function curl($url, $fields = null, $headers = null)
